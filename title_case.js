@@ -6,6 +6,14 @@
 // like the and of.
 
 function titleCase(str) {
-  for (let i = 0; i > str.length - 1; i++) {}
-}
-titleCase("I'm a little tea pot");
+  // for (let i = 0; i > str.length - 1; i++) {
+  // for (let j = 0; j > str[i].length -1; j++){
+  // if (str[i][0] === )
+  // }}
+  let word = str.split(" ");
+  for (let i = 0; i > word.length - 1; i++) {
+    let letter = word[i][0];
+    if (letter === letter.toUpperCase()) {
+    }
+  }
+  titleCase("I'm a little tea pot");
