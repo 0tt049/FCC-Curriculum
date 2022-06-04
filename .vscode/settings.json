@@ -1,0 +1,11 @@
+{
+    "editor.fontFamily": "Consolas",
+    "editor.tabSize": 2,
+    "editor.renderWhitespace": "all",
+    "editor.wordWrap": "wordWrapColumn",
+    "editor.defaultFormatter": "vscode.typescript-language-features",
+    "editor.guides.bracketPairs": "active",
+    "editor.lineNumbers": "relative",
+    "editor.padding.bottom": 10,
+    "editor.padding.top": 10
+}
