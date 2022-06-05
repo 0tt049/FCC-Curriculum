@@ -17,7 +17,7 @@ In this course, you'll learn the fundamentals of algorithmic thinking by writing
 [Finders Keepers](./finders_keepers.js)
 [Boo who](./boo_who.js)
 [Title Case a Sentence](./title_case_sentense.js)
-[Slice and Splice]
+[Slice and Splice](./slice_splice.js)
 [Falsy Bouncer]
 [Where do I Belong]
 [Mutations]
