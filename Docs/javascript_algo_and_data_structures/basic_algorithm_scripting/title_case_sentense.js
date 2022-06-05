@@ -6,12 +6,13 @@ For the purpose of this exercise, you should also capitalize connecting words li
 */
 
 function titleCase(str) {
-
-  let word = str.split(" ")
+  let lowered = str.toLowerCase();
+  let word = lowered.split(" ")
   let capword = [];
+
   for (let i = 0; i < word.length; i++) {
     capword.push(word[i][0].toUpperCase() + word[i].slice(1));
   }
   return capword.join(" ");
 }
-titleCase("I'm a little tea pot");
+titleCase("I'm a liTTle tea pot");
