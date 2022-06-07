@@ -16,4 +16,4 @@ function getIndexToIns(arr, num) {
     }
   }
 }
-getIndexToIns([60, 40], 50);
+console.log(getIndexToIns([60, 40], 50));
