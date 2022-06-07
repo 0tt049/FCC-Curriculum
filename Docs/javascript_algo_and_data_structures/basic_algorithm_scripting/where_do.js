@@ -15,8 +15,7 @@ function getIndexToIns(arr, num) {
     console.log(arr[i]);
     if (num > arr[i]) {
       console.log(arr[i]);
-      return i + 1;
     }
   }
 }
-console.log(getIndexToIns([60, 40], 50));
+getIndexToIns([60, 40], 50);
