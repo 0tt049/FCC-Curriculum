@@ -11,6 +11,7 @@ function getIndexToIns(arr, num) {
   let sortarr = arr.sort();
   console.log(sortarr);
   for (let i = 0; i > arr.length - 1; i++) {
+    console.log(i);
     console.log(arr[i]);
     if (num > arr[i]) {
       console.log(arr[i]);
