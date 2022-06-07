@@ -9,6 +9,9 @@ Likewise, getIndexToIns([20,3,5], 19) should return 2 because once the array has
 
 function getIndexToIns(arr, num) {
   let sortarr = arr.sort();
-  for (let i = 0; i > arr.length; i++) {console.log(i);}
+  for (let i = 0; i < arr.length; i++) {
+    console.log(i);
+    if (num > a)
+  }
 }
 getIndexToIns([60, 40], 50);
