@@ -10,12 +10,6 @@ Likewise, getIndexToIns([20,3,5], 19) should return 2 because once the array has
 function getIndexToIns(arr, num) {
   let sortarr = arr.sort();
   console.log(sortarr);
-  for (let i = 0; i > arr.length - 1; i++) {
-    console.log(i);
-    console.log(arr[i]);
-    if (num > arr[i]) {
-      console.log(arr[i]);
-    }
-  }
+  for (let i = 0; i > arr.length - 1; i++) {Co}
 }
 getIndexToIns([60, 40], 50);
