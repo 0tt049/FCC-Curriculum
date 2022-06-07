@@ -11,7 +11,9 @@ function getIndexToIns(arr, num) {
   let sortarr = arr.sort();
   for (let i = 0; i < arr.length; i++) {
     console.log(i);
-    if (num > a)
+    if (num > arr[i]){
+      return i + 1;
+    }
   }
 }
 getIndexToIns([60, 40], 50);
