@@ -20,5 +20,5 @@ In this course, you'll learn the fundamentals of algorithmic thinking by writing
 - [Slice and Splice](./slice_splice.js)
 - [Falsy Bouncer](./falsy.js)
 - [Where do I Belong](./where_do.js)
-- [Mutations]
+- [Mutations](./mutations.js)
 - [Chunky Monkey]
