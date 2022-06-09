@@ -4,7 +4,7 @@ OOP, or Object Oriented Programming, is one of the major approaches to the softw
 
 In this course, you'll learn the basic principles of OOP in JavaScript, including the this keyword, prototype chains, constructors, and inheritance.
 
-[Create a Basic JavaScript Object]
+[Create a Basic JavaScript Object](./basic_object.js)
 [Use Dot Notation to Access the Properties of an Object]
 [Create a Method on an Object]
 [Make Code More Reusable with the this Keyword]
