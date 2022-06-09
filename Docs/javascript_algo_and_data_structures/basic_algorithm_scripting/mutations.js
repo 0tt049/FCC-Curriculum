@@ -10,7 +10,19 @@ Lastly, ["Alien", "line"], should return true because all of the letters in line
 */
 
 function mutation(arr) {
-  return arr;
+  let arr0 = arr[0].toLowerCase();
+  let arr1 = arr[1].toLowerCase();
+  for (let i = 0; i < arr1.length; i++) {
+    if (arr0.includes(arr1[i])) {
+      if (i == arr1.length - 1) {
+        return true;
+      }
+    }
+    else {
+      return false;
+    }
+
+  }
 }
 
-mutation(["hello", "hey"]);
+mutation(["Helloy", "hellow"]);
