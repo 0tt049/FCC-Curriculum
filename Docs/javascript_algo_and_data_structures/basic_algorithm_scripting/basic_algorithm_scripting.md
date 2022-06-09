@@ -21,4 +21,4 @@ In this course, you'll learn the fundamentals of algorithmic thinking by writing
 - [Falsy Bouncer](./falsy.js)
 - [Where do I Belong](./where_do.js)
 - [Mutations](./mutations.js)
-- [Chunky Monkey]
+- [Chunky Monkey](./chunky_money.js)
