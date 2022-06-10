@@ -6,7 +6,7 @@ In this course, you'll learn the basic principles of OOP in JavaScript, includin
 
 [Create a Basic JavaScript Object](./basic_object.js)
 [Use Dot Notation to Access the Properties of an Object](./dotnot_to_acces.js)
-[Create a Method on an Object]
+[Create a Method on an Object](./create_method_on_object.js)
 [Make Code More Reusable with the this Keyword]
 [Define a Constructor Function]
 [Use a Constructor to Create Objects]
