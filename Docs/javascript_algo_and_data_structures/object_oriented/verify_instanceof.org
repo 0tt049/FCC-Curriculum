@@ -35,7 +35,7 @@ canary instanceof Bird;
 
 #+end_src
 
-This instanceof method would return false.
+This ~instanceof~ method would return false.
 
 * CODE
 
