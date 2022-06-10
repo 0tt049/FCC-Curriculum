@@ -10,7 +10,7 @@ In this course, you'll learn the basic principles of OOP in JavaScript, includin
 [Make Code More Reusable with the this Keyword](./more_reusable.js)
 [Define a Constructor Function](./constructor_function.js)
 [Use a Constructor to Create Objects](./constructor_to_create.org)
-[Extend Constructors to Receive Arguments]
+[Extend Constructors to Receive Arguments](./extend_constructors.org)
 [Verify an Object's Constructor with instanceof]
 [Understand Own Properties]
 [Use Prototype Properties to Reduce Duplicate Code]
