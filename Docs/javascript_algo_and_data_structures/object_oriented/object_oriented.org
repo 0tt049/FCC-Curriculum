@@ -325,7 +325,7 @@ If an object is created without using a constructor, ~instanceof~ will verify th
 let canary = {
   name: "Mildred",
   color: "Yellow",
- numLegs: 2
+  numLegs: 2
 };
 
 canary instanceof Bird;
@@ -373,7 +373,7 @@ let canary = new Bird("Tweety");
 
 #+begin_src javascript
 
-let ownProps = [];
+let ownProps = [;
 
 for (let property in duck) {
   if(duck.hasOwnProperty(property)) {
@@ -385,7 +385,7 @@ console.log(ownProps);
 
 #+end_src
 
-The console would display the value ~["name", "numLegs"]~.
+The console would display the value ~["name", "numLegs"~.
 
 *** CODE:
 
@@ -399,7 +399,7 @@ function Bird(name) {
 }
 
 let canary = new Bird("Tweety");
-let ownProps = [];
+let ownProps = [;
 // Only change code below this line
 
 for (let property in canary) {
@@ -474,8 +474,8 @@ Here is how you add ~duck~'s own properties to the array ~ownProps~ and ~prototy
 
 #+begin_src javascript
 
-let ownProps = [];
-let prototypeProps = [];
+let ownProps = [;
+let prototypeProps = [;
 
 for (let property in duck) {
   if(duck.hasOwnProperty(property)) {
@@ -490,7 +490,7 @@ console.log(prototypeProps);
 
 #+end_src
 
-~console.log(ownProps)~ would display ~["name"]~ in the console, and ~console.log(prototypeProps)~ would display ~["numLegs"]~.
+~console.log(ownProps)~ would display ~["name"~ in the console, and ~console.log(prototypeProps)~ would display ~["numLegs"~.
 
 *** CODE:
 
@@ -506,8 +506,8 @@ Dog.prototype.numLegs = 4;
 
 let beagle = new Dog("Snoopy");
 
-let ownProps = [];
-let prototypeProps = [];
+let ownProps = [;
+let prototypeProps = [;
 
 // Only change code below this line
 
@@ -574,17 +574,276 @@ function joinDogFraternity(candidate) {
 }
 
 #+end_src
-** [Change the Prototype to a New Object]
-** [Remember to Set the Constructor Property when Changing the Prototype]
-** [Understand Where an Object’s Prototype Comes From]
-** [Understand the Prototype Chain]
-** [Use Inheritance So You Don't Repeat Yourself]
-** [Inherit Behaviors from a Supertype]
-** [Set the Child's Prototype to an Instance of the Parent]
-** [Reset an Inherited Constructor Property]
-** [Add Methods After Inheritance]
-** [Override Inherited Meth
-** [Use a Mixin to Add Common Behavior Between Unrelated Objects]
-** [Use Closure to Protect Properties Within an Object from Being Modified Externally]
-** [Understand the Immediately Invoked Function Expression (IIFE)]
-** [Use an IIFE to Create a Module]
+
+** Change the Prototype to a New Object
+*** INFO:
+
+Up until now you have been adding properties to the ~prototype~ individually:
+
+#+begin_src javascript
+Bird.prototype.numLegs = 2;
+#+end_src
+
+This becomes tedious after more than a few properties.
+
+#+begin_src javascript
+Bird.prototype.eat = function() {
+  console.log("nom nom nom");
+}
+
+Bird.prototype.describe = function() {
+  console.log("My name is " + this.name);
+}
+#+end_src
+
+A more efficient way is to set the ~prototype~ to a new object that already contains the properties. This way, the properties are added all at once:
+
+#+begin_src javascript
+Bird.prototype = {
+  numLegs: 2,
+  eat: function() {
+    console.log("nom nom nom");
+  },
+  describe: function() {
+    console.log("My name is " + this.name);
+  }
+};
+#+end_src
+
+*** CODE:
+
+Add the property ~numLegs~ and the two methods ~eat()~ and ~describe()~ to the ~prototype~ of ~Dog~ by setting the ~prototype~ to a new object.
+
+#+begin_src javascript
+function Dog(name) {
+  this.name = name;
+}
+
+Dog.prototype = {
+  // Only change code below this line
+    numLegs: 4,
+    eat: function() {
+        console.log("eat shit, taste likes real food");
+    },
+    describe: function () {
+        console.log("My name is " + this.name);
+    }
+};
+#+end_src
+
+** Remember to Set the Constructor Property when Changing the Prototype
+*** INFO:
+There is one crucial side effect of manually setting the prototype to a new object. It erases the ~constructor~ property! This property can be used to check which constructor function created the instance, but since the property has been overwritten, it now gives false results:
+
+#+begin_src javascript
+duck.constructor === Bird;
+duck.constructor === Object;
+duck instanceof Bird;
+#+end_src
+
+In order, these expressions would evaluate to ~false~, ~true~, and ~true~.
+
+To fix this, whenever a prototype is manually set to a new object, remember to define the ~constructor~ property:
+
+#+begin_src javascript
+Bird.prototype = {
+  constructor: Bird,
+  numLegs: 2,
+  eat: function() {
+    console.log("nom nom nom");
+  },
+  describe: function() {
+    console.log("My name is " + this.name);
+  }
+};
+#+end_src
+
+*** CODE:
+
+Define the ~constructor~ property on the ~Dog~ ~prototype~.
+
+#+begin_src javascript
+function Dog(name) {
+  this.name = name;
+}
+// Only change code below this line
+Dog.prototype = {
+ constructor: Dog,
+  numLegs: 4,
+  eat: function() {
+    console.log("nom nom nom");
+  },
+  describe: function() {
+    console.log("My name is " + this.name);
+  }
+};
+#+end_src
+
+** Understand Where an Object’s Prototype Comes From
+*** INFO:
+
+Just like people inherit genes from their parents, an object inherits its ~prototype~ directly from the constructor function that created it. For example, here the ~Bird~ constructor creates the ~duck~ object:
+
+#+begin_src javascript
+function Bird(name) {
+  this.name = name;
+}
+
+let duck = new Bird("Donald");
+#+end_src
+
+~duck~ inherits its ~prototype~ from the ~Bird~ constructor function. You can show this relationship with the ~isPrototypeOf~ method:
+
+#+begin_src javascript
+Bird.prototype.isPrototypeOf(duck);
+#+end_src
+
+This would return ~true~.
+
+*** CODE:
+Use ~isPrototypeOf~ to check the ~prototype~ of ~beagle~.
+
+#+begin_src javascript
+
+function Dog(name) {
+  this.name = name;
+}
+
+let beagle = new Dog("Snoopy");
+
+// Only change code below this line
+
+Dog.prototype.isPrototypeOf(beagle)
+#+end_src
+
+** Understand the Prototype Chain
+*** INFO:
+All objects in JavaScript (with a few exceptions) have a ~prototype~. Also, an object’s ~prototype~ itself is an object.
+
+#+begin_src javascript
+function Bird(name) {
+  this.name = name;
+}
+
+typeof Bird.prototype;
+#+end_src
+
+Because a ~prototype~ is an object, a ~prototype~ can have its own ~prototype~! In this case, the ~prototype~ of ~Bird.prototype~ is ~Object.prototype~:
+
+#+begin_src
+Object.prototype.isPrototypeOf(Bird.prototype);
+#+end_src
+
+How is this useful? You may recall the ~hasOwnProperty~ method from a previous challenge:
+
+#+begin_src javascript
+let duck = new Bird("Donald");
+duck.hasOwnProperty("name");
+#+end_src
+
+The ~hasOwnProperty~ method is defined in ~Object.prototype~, which can be accessed by ~Bird.prototype~, which can then be accessed by ~duck~. This is an example of the ~prototype~ chain. In this ~prototype~ chain, ~Bird~ is the ~supertype~ for ~duck~, while ~duck~ is the ~subtype~. ~Object~ is a ~supertype~ for both ~Bird~ and ~duck~. ~Object~ is a ~supertype~ for all objects in JavaScript. Therefore, any object can use the ~hasOwnProperty~ method.
+
+*** CODE:
+
+Modify the code to show the correct prototype chain.
+#+begin_src javascript
+function Dog(name) {
+  this.name = name;
+}
+
+let beagle = new Dog("Snoopy");
+
+Dog.prototype.isPrototypeOf(beagle);  // yields true
+
+// Fix the code below so that it evaluates to true
+Object.prototype.isPrototypeOf(Dog.prototype);
+#+end_src
+
+** Use Inheritance So You Don't Repeat Yourself
+*** INFO:
+
+There's a principle in programming called /Don't Repeat Yourself (DRY)/. The reason repeated code is a problem is because any change requires fixing code in multiple places. This usually means more work for programmers and more room for errors.
+
+Notice in the example below that the ~describe~ method is shared by ~Bird~ and ~Dog~:
+
+#+begin_src javascript
+Bird.prototype = {
+  constructor: Bird,
+  describe: function() {
+    console.log("My name is " + this.name);
+  }
+};
+
+Dog.prototype = {
+  constructor: Dog,
+  describe: function() {
+    console.log("My name is " + this.name);
+  }
+};
+#+end_src
+
+The ~describe~ method is repeated in two places. The code can be edited to follow the DRY principle by creating a ~supertype~ (or parent) called ~Animal~:
+
+#+begin_src javascript
+function Animal() { };
+
+Animal.prototype = {
+  constructor: Animal,
+  describe: function() {
+    console.log("My name is " + this.name);
+  }
+};
+#+end_src
+
+Since ~Animal~ includes the ~describe~ method, you can remove it from ~Bird~ and ~Dog~:
+
+#+begin_src javascript
+Bird.prototype = {
+  constructor: Bird
+};
+
+Dog.prototype = {
+  constructor: Dog
+};
+#+end_src
+
+*** CODE:
+
+The ~eat~ method is repeated in both ~Cat~ and ~Bear~. Edit the code in the spirit of DRY by moving the ~eat~ method to the ~Animal~ ~supertype~.
+
+#+begin_src javascript
+function Cat(name) {
+  this.name = name;
+}
+
+Cat.prototype = {
+  constructor: Cat,
+};
+
+function Bear(name) {
+  this.name = name;
+}
+
+Bear.prototype = {
+  constructor: Bear,
+};
+
+function Animal() { }
+
+Animal.prototype = {
+  constructor: Animal,
+  eat: function() {
+    console.log("nom nom nom");
+  }
+};
+#+end_src
+
+** Inherit Behaviors from a Supertype
+** Set the Child's Prototype to an Instance of the Parent
+** Reset an Inherited Constructor Property
+** Add Methods After Inheritance
+** Override Inherited Meth
+** Use a Mixin to Add Common Behavior Between Unrelated Objects
+** Use Closure to Protect Properties Within an Object from Being Modified Externally
+** Understand the Immediately Invoked Function Expression (IIFE)
+** Use an IIFE to Create a Module
