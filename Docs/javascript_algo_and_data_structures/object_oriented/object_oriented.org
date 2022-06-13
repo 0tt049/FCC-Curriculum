@@ -1101,7 +1101,79 @@ Penguin.prototype.fly = function() {
 let penguin = new Penguin();
 console.log(penguin.fly());
 #+end_src
+
 ** Use a Mixin to Add Common Behavior Between Unrelated Objects
+
+*** INFO:
+
+As you have seen, behavior is shared through inheritance. However, there are cases when inheritance is not the best solution. Inheritance does not work well for unrelated objects like ~Bird~ and ~Airplane~. They can both fly, but a ~Bird~ is not a type of ~Airplane~ and vice versa.
+
+For unrelated objects, it's better to use /mixins/. A mixin allows other objects to use a collection of functions.
+
+#+begin_src javascript
+let flyMixin = function(obj) {
+  obj.fly = function() {
+    console.log("Flying, wooosh!");
+  }
+};
+#+end_src
+
+The ~flyMixin~ takes any object and gives it the ~fly~ method.
+
+#+begin_src javascript
+let bird = {
+  name: "Donald",
+  numLegs: 2
+};
+
+let plane = {
+  model: "777",
+  numPassengers: 524
+};
+
+flyMixin(bird);
+flyMixin(plane);
+#+end_src
+
+Here ~bird~ and ~plane~ are passed into ~flyMixin~, which then assigns the ~fly~ function to each object. Now ~bird~ and ~plane~ can both fly:
+
+#+begin_src javascript
+bird.fly();
+plane.fly();
+#+end_src
+
+The console would display the string ~Flying, wooosh!~ twice, once for each ~.fly()~ call.
+
+Note how the mixin allows for the same ~fly~ method to be reused by unrelated objects ~bird~ and ~plane~.
+
+*** CODE:
+
+Create a mixin named ~glideMixin~ that defines a method named ~glide~. Then use the ~glideMixin~ to give both ~bird~ and ~boat~ the ability to glide.
+
+#+begin_src javascript
+let bird = {
+  name: "Donald",
+  numLegs: 2
+};
+
+let boat = {
+  name: "Warrior",
+  type: "race-boat"
+};
+
+// Only change code below this line
+
+let glideMixin = function(obj){
+    obj.glide = function() {
+    console.log("Gliding, swaaash!");
+    }
+};
+
+glideMixin(bird);
+glideMixin(boat);
+
+#+end_src
+
 ** Use Closure to Protect Properties Within an Object from Being Modified Externally
 ** Understand the Immediately Invoked Function Expression (IIFE)
 ** Use an IIFE to Create a Module
