@@ -1,0 +1,93 @@
+* --description--
+  :PROPERTIES:
+  :CUSTOM_ID: description
+  :END:
+The last challenge was a step closer to functional programming
+principles, but there is still something missing.
+
+We didn't alter the global variable value, but the function
+=incrementer= would not work without the global variable =fixedValue=
+being there.
+
+Another principle of functional programming is to always declare your
+dependencies explicitly. This means if a function depends on a variable
+or object being present, then pass that variable or object directly into
+the function as an argument.
+
+There are several good consequences from this principle. The function is
+easier to test, you know exactly what input it takes, and it won't
+depend on anything else in your program.
+
+This can give you more confidence when you alter, remove, or add new
+code. You would know what you can or cannot change and you can see where
+the potential traps are.
+
+Finally, the function would always produce the same output for the same
+set of inputs, no matter what part of the code executes it.
+
+* --instructions--
+  :PROPERTIES:
+  :CUSTOM_ID: instructions
+  :END:
+Let's update the =incrementer= function to clearly declare its
+dependencies.
+
+Write the =incrementer= function so it takes an argument, and then
+returns a result after increasing the value by one.
+
+* --hints--
+  :PROPERTIES:
+  :CUSTOM_ID: hints
+  :END:
+Your function =incrementer= should not change the value of =fixedValue=
+(which is =4=).
+
+#+begin_src js
+assert(fixedValue === 4);
+#+end_src
+
+Your =incrementer= function should take an argument.
+
+#+begin_src js
+assert(incrementer.length === 1);
+#+end_src
+
+Your =incrementer= function should return a value that is one larger
+than the =fixedValue= value.
+
+#+begin_src js
+const __newValue = incrementer(fixedValue);
+assert(__newValue === 5);
+#+end_src
+
+* --seed--
+  :PROPERTIES:
+  :CUSTOM_ID: seed
+  :END:
+** --seed-contents--
+   :PROPERTIES:
+   :CUSTOM_ID: seed-contents
+   :END:
+#+begin_src js
+// The global variable
+let fixedValue = 4;
+
+// Only change code below this line
+function incrementer() {
+
+
+  // Only change code above this line
+}
+#+end_src
+
+* --solutions--
+  :PROPERTIES:
+  :CUSTOM_ID: solutions
+  :END:
+#+begin_src js
+let fixedValue = 4;
+
+function incrementer(fixedValue) {
+  return fixedValue + 1;
+}
+#+end_src

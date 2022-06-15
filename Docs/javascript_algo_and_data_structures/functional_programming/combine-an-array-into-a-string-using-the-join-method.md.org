@@ -1,0 +1,98 @@
+* --description--
+  :PROPERTIES:
+  :CUSTOM_ID: description
+  :END:
+The =join= method is used to join the elements of an array together to
+create a string. It takes an argument for the delimiter that is used to
+separate the array elements in the string.
+
+Here's an example:
+
+#+begin_src js
+const arr = ["Hello", "World"];
+const str = arr.join(" ");
+#+end_src
+
+=str= would have a value of the string =Hello World=. # --instructions--
+
+Use the =join= method (among others) inside the =sentensify= function to
+make a sentence from the words in the string =str=. The function should
+return a string. For example, =I-like-Star-Wars= would be converted to
+=I like Star Wars=. For this challenge, do not use the =replace= method.
+
+* --hints--
+  :PROPERTIES:
+  :CUSTOM_ID: hints
+  :END:
+Your code should use the =join= method.
+
+#+begin_src js
+assert(code.match(/\.join/g));
+#+end_src
+
+Your code should not use the =replace= method.
+
+#+begin_src js
+assert(!code.match(/\.?[\s\S]*?replace/g));
+#+end_src
+
+=sentensify("May-the-force-be-with-you")= should return a string.
+
+#+begin_src js
+assert(typeof sentensify('May-the-force-be-with-you') === 'string');
+#+end_src
+
+=sentensify("May-the-force-be-with-you")= should return the string
+=May the force be with you=.
+
+#+begin_src js
+assert(sentensify('May-the-force-be-with-you') === 'May the force be with you');
+#+end_src
+
+=sentensify("The.force.is.strong.with.this.one")= should return the
+string =The force is strong with this one=.
+
+#+begin_src js
+assert(
+  sentensify('The.force.is.strong.with.this.one') ===
+    'The force is strong with this one'
+);
+#+end_src
+
+=sentensify("There,has,been,an,awakening")= should return the string
+=There has been an awakening=.
+
+#+begin_src js
+assert(
+  sentensify('There,has,been,an,awakening') === 'There has been an awakening'
+);
+#+end_src
+
+* --seed--
+  :PROPERTIES:
+  :CUSTOM_ID: seed
+  :END:
+** --seed-contents--
+   :PROPERTIES:
+   :CUSTOM_ID: seed-contents
+   :END:
+#+begin_src js
+function sentensify(str) {
+  // Only change code below this line
+
+
+  // Only change code above this line
+}
+
+sentensify("May-the-force-be-with-you");
+#+end_src
+
+* --solutions--
+  :PROPERTIES:
+  :CUSTOM_ID: solutions
+  :END:
+#+begin_src js
+function sentensify(str) {
+  return str.split(/\W/).join(' ');
+}
+#+end_src

@@ -1,0 +1,110 @@
+* --description--
+  :PROPERTIES:
+  :CUSTOM_ID: description
+  :END:
+Now that you have worked through a few challenges using higher-order
+functions like =map()=, =filter()=, and =reduce()=, you now get to apply
+them to solve a more complex challenge.
+
+* --instructions--
+  :PROPERTIES:
+  :CUSTOM_ID: instructions
+  :END:
+Complete the code for the =squareList= function using any combination of
+=map()=, =filter()=, and =reduce()=. The function should return a new
+array containing the squares of /only/ the positive integers (decimal
+numbers are not integers) when an array of real numbers is passed to it.
+An example of an array of real numbers is =[-3, 4.8, 5, 3, -3.2]=.
+
+*Note:* Your function should not use any kind of =for= or =while= loops
+or the =forEach()= function.
+
+* --hints--
+  :PROPERTIES:
+  :CUSTOM_ID: hints
+  :END:
+=squareList= should be a =function=.
+
+#+begin_src js
+assert.typeOf(squareList, 'function'),
+  '<code>squareList</code> should be a <code>function</code>';
+#+end_src
+
+=for=, =while=, and =forEach= should not be used.
+
+#+begin_src js
+assert(!code.match(/for|while|forEach/g));
+#+end_src
+
+=map=, =filter=, or =reduce= should be used.
+
+#+begin_src js
+assert(
+  __helpers
+    .removeWhiteSpace(code)
+    .match(/\.(map|filter|reduce)\(/g)
+);
+#+end_src
+
+The function should return an =array=.
+
+#+begin_src js
+assert(Array.isArray(squareList([4, 5.6, -9.8, 3.14, 42, 6, 8.34, -2])));
+#+end_src
+
+=squareList([4, 5.6, -9.8, 3.14, 42, 6, 8.34, -2])= should return
+=[16, 1764, 36]=.
+
+#+begin_src js
+assert.deepStrictEqual(squareList([4, 5.6, -9.8, 3.14, 42, 6, 8.34, -2]), [
+  16,
+  1764,
+  36
+]);
+#+end_src
+
+=squareList([-3.7, -5, 3, 10, 12.5, 7, -4.5, -17, 0.3])= should return
+=[9, 100, 49]=.
+
+#+begin_src js
+assert.deepStrictEqual(squareList([-3.7, -5, 3, 10, 12.5, 7, -4.5, -17, 0.3]), [
+  9,
+  100,
+  49
+]);
+#+end_src
+
+* --seed--
+  :PROPERTIES:
+  :CUSTOM_ID: seed
+  :END:
+** --seed-contents--
+   :PROPERTIES:
+   :CUSTOM_ID: seed-contents
+   :END:
+#+begin_src js
+const squareList = arr => {
+  // Only change code below this line
+  return arr;
+  // Only change code above this line
+};
+
+const squaredIntegers = squareList([-3, 4.8, 5, 3, -3.2]);
+console.log(squaredIntegers);
+#+end_src
+
+* --solutions--
+  :PROPERTIES:
+  :CUSTOM_ID: solutions
+  :END:
+#+begin_src js
+const squareList = arr => {
+  const positiveIntegers = arr.filter(num => {
+    return num >= 0 && Number.isInteger(num);
+  });
+  const squaredIntegers = positiveIntegers.map(num => {
+    return num ** 2;
+  });
+  return squaredIntegers;
+};
+#+end_src

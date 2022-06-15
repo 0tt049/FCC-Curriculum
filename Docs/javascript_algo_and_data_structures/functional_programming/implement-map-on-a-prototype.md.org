@@ -1,0 +1,85 @@
+* --description--
+  :PROPERTIES:
+  :CUSTOM_ID: description
+  :END:
+As you have seen from applying =Array.prototype.map()=, or simply
+=map()= earlier, the =map= method returns an array of the same length as
+the one it was called on. It also doesn't alter the original array, as
+long as its callback function doesn't.
+
+In other words, =map= is a pure function, and its output depends solely
+on its inputs. Plus, it takes another function as its argument.
+
+You might learn a lot about the =map= method if you implement your own
+version of it. It is recommended you use a =for= loop or
+=Array.prototype.forEach()=.
+
+* --instructions--
+  :PROPERTIES:
+  :CUSTOM_ID: instructions
+  :END:
+Write your own =Array.prototype.myMap()=, which should behave exactly
+like =Array.prototype.map()=. You should not use the built-in =map=
+method. The =Array= instance can be accessed in the =myMap= method using
+=this=.
+
+* --hints--
+  :PROPERTIES:
+  :CUSTOM_ID: hints
+  :END:
+=new_s= should equal =[46, 130, 196, 10]=.
+
+#+begin_src js
+assert(JSON.stringify(new_s) === JSON.stringify([46, 130, 196, 10]));
+#+end_src
+
+Your code should not use the =map= method.
+
+#+begin_src js
+assert(!code.match(/\.?[\s\S]*?map/g));
+#+end_src
+
+* --seed--
+  :PROPERTIES:
+  :CUSTOM_ID: seed
+  :END:
+** --seed-contents--
+   :PROPERTIES:
+   :CUSTOM_ID: seed-contents
+   :END:
+#+begin_src js
+// The global variable
+const s = [23, 65, 98, 5];
+
+Array.prototype.myMap = function(callback) {
+  const newArray = [];
+  // Only change code below this line
+
+  // Only change code above this line
+  return newArray;
+};
+
+const new_s = s.myMap(function(item) {
+  return item * 2;
+});
+#+end_src
+
+* --solutions--
+  :PROPERTIES:
+  :CUSTOM_ID: solutions
+  :END:
+#+begin_src js
+const s = [23, 65, 98, 5];
+
+Array.prototype.myMap = function(callback) {
+  const newArray = [];
+  for (const elem of this) {
+    newArray.push(callback(elem));
+  }
+  return newArray;
+};
+
+const new_s = s.myMap(function(item) {
+  return item * 2;
+});
+#+end_src
